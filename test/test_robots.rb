@@ -49,8 +49,13 @@ class TestRobots < Test::Unit::TestCase
   end
   
   def test_other_values
-    sitemap = {"Sitemap" => ["http://www.eventbrite.com/sitemap_index.xml", "http://www.eventbrite.com/sitemap_index.xml"]}
+    sitemap = {"sitemap" => ["http://www.eventbrite.com/sitemap_index.xml", "http://www.eventbrite.com/sitemap_index.xml"]}
     assert_other_equals("eventbrite", sitemap)
+  end
+  
+  def test_mix_case_user_agent
+    assert_allowed("mixcase", "/")
+    assert_disallowed("mixcase", "/test")
   end
   
   def assert_other_equals(name, value)
